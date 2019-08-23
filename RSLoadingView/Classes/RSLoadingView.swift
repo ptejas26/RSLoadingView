@@ -62,7 +62,8 @@ public class RSLoadingView: UIView, SCNSceneRendererDelegate {
         break
       }
     }
-    super.init(frame: CGRect.zero)()
+    super.init(frame: CGRect.zero)
+    setup()
   }
   
   public override init(frame: CGRect) {
