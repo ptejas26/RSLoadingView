@@ -45,7 +45,7 @@ public class RSLoadingView: UIView, SCNSceneRendererDelegate {
   public var dimBackgroundColor = UIColor.black.withAlphaComponent(0.6)
   public var isBlocking = true
   public var shouldTapToDismiss = false
-  internal var sizeInContainer: CGSize = CGSize(width: width, height: height)
+  internal var sizeInContainer: CGSize?
   
   deinit {
     logger.logDebug("deinit")
@@ -62,8 +62,7 @@ public class RSLoadingView: UIView, SCNSceneRendererDelegate {
         break
       }
     }
-    super.init(frame: CGRect.zero)
-    setup()
+    super.init(frame: CGRect.zero)()
   }
   
   public override init(frame: CGRect) {
@@ -93,6 +92,8 @@ public class RSLoadingView: UIView, SCNSceneRendererDelegate {
     cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
     bundleResourcePath = "/Frameworks/RSLoadingView.framework/RSLoadingView.bundle/"
     effect.setup(main: self)
+    sizeInContainer = CGSize(width: self.width, height: self.height)
+
   }
   
   public override func layoutSubviews() {
