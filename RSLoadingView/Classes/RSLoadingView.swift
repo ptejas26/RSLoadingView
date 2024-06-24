@@ -21,6 +21,9 @@ public class RSLoadingView: UIView, SCNSceneRendererDelegate {
   @IBInspectable public var spreadingFactor: CGFloat = 1.0
   @IBInspectable public var lifeSpanFactor: CGFloat = 1.0
   @IBInspectable public var variantKey: String = ""
+   @IBInspectable public var width: CGFloat = 0.0
+     @IBInspectable public var height: CGFloat = 0.0
+
   
   fileprivate var effect: RSLoadingViewEffect = RSLoadingSpinAlone()
   let logger = RSLogger(tag: "RSLoadingView")
@@ -42,7 +45,7 @@ public class RSLoadingView: UIView, SCNSceneRendererDelegate {
   public var dimBackgroundColor = UIColor.black.withAlphaComponent(0.6)
   public var isBlocking = true
   public var shouldTapToDismiss = false
-  public var sizeInContainer: CGSize = CGSize(width: 180, height: 180)
+  internal var sizeInContainer: CGSize?
   
   deinit {
     logger.logDebug("deinit")
@@ -90,6 +93,8 @@ public class RSLoadingView: UIView, SCNSceneRendererDelegate {
     cameraNode.position = SCNVector3(x: 0, y: 0, z: 15)
     bundleResourcePath = "/Frameworks/RSLoadingView.framework/RSLoadingView.bundle/"
     effect.setup(main: self)
+    sizeInContainer = CGSize(width: self.width, height: self.height)
+
   }
   
   public override func layoutSubviews() {
